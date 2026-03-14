@@ -1,7 +1,7 @@
 services:
   analyst:
     container_name: analyst
-    image: yuanyuexiang/analyst:v2
+    image: yuanyuexiang/analyst:v6
     restart: always
     environment:
       DATABASE_URL: "postgres://postgres:squirrel_canon_20260101@postgres:5432/analyst?sslmode=disable"
