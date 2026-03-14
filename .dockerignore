@@ -1,0 +1,8 @@
+.git
+__pycache__
+*.pyc
+data_loader.R
+read_data.R
+r_data_loader.py
+DataLoaderPkg/
+.venv/

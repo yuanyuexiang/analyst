@@ -1,0 +1,23 @@
+services:
+  analyst:
+    container_name: analyst
+    image: yuanyuexiang/analyst:v2
+    restart: always
+    environment:
+      DATABASE_URL: "postgres://postgres:squirrel_canon_20260101@postgres:5432/analyst?sslmode=disable"
+    networks:
+      - matrix-network
+    labels:
+      - "traefik.enable=true"      
+      - "traefik.http.routers.analyst.rule=Host(`atlas.asksquirrel.ai`) && PathPrefix(`/analyst`)" # 替换为你的域名
+      - "traefik.http.routers.analyst.entrypoints=websecure"
+      - "traefik.http.routers.analyst.service=analyst"
+      - "traefik.http.routers.analyst.tls=true"
+      - "traefik.http.routers.analyst.tls.certresolver=cloudflare"
+      - "traefik.http.services.analyst.loadbalancer.server.port=8000"
+    ports:
+      - "8000"
+
+networks:
+  matrix-network:
+    external: true
